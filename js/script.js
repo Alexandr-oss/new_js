@@ -4,9 +4,7 @@ let numberOfFilms = +prompt("Сколько фильмов Вы уже посм�
 
 let personalMovieDB = {
   count: numberOfFilms,
-  movies: {
-    a: "b",
-  },
+  movies: {},
   actors: {},
   genres: [],
   privat: false,
