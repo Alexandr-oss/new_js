@@ -32,8 +32,8 @@ document.addEventListener("DOMContentLoaded", () => {
     bg = document.querySelector(".promo__bg"),
     genre = bg.querySelector(".promo__genre"),
     movieList = document.querySelector(".promo__interactive-list"),
-    addForm = document.querySelector(".form.add"),
-    addInput = addForm.querySelector(".adding_input"),
+    addForm = document.querySelector("form.add"),
+    addInput = addForm.querySelector(".adding__input"),
     checkbox = addForm.querySelector('[type= "checkbox"]');
 
   addForm.addEventListener("Submit", (event) => {
@@ -46,8 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
       if (newFilm.length > 21) {
         newFilm = `${newFilm.substring(0, 22)}...`;
       }
+
+      if (favorite) {
+        console.log("Добавляем любимый фильм");
+      }
       movieDB.movies.push(newFilm);
-      arrSort.sort(movieDB.movies);
+      arrSort(movieDB.movies);
 
       createMovieList(movieDB.movies, movieList);
     }
@@ -71,8 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   function createMovieList(films, parent) {
     parent.innerHTML = "";
+    arrSort(films);
 
-    films.movies.forEach((film, i) => {
+    films.forEach((film, i) => {
       parent.innerHTML += `
   <li class="promo__interactive-item"> ${i + 1}. ${film}
   <div class="delete"></div>`;
@@ -90,6 +95,5 @@ document.addEventListener("DOMContentLoaded", () => {
 
   deleteAd(ad);
   edit(genre, bg);
-  arrSort(movieDB.movies);
   createMovieList(movieDB.movies, movieList);
 });
